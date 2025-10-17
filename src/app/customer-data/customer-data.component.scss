@@ -1,0 +1,36 @@
+.customer-data__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.customer-data__label input {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 4px 0;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+.customer-data__label input:focus {
+  border-bottom-color: #181d4e;
+}
+
+.customer-data__label{
+  font-size: 16px;
+}
+
+.customer-data__label--checkbox input{
+  width:fit-content;
+}
+
+.customer-data__label--checkbox{
+  font-size: 14px;
+}
+
+.customer-data__submit{
+  width: fit-content;
+}

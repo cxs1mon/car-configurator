@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  background: #181d4e;
+  padding: 0 10px;
+  @media (min-width: 426px) {
+    padding: 10px 20px;
+
+  }
+}
+
+.header__title {
+  color: white;
+  font-family: "Michroma", sans-serif;
+  margin: 10px 0;
+  font-size: 24px;
+  @media (min-width: 426px) {
+    font-size: 32px;
+    margin-left: 10px;
+  }
+}
+
+.header__logo {
+  margin: auto 10px;
+  @media (min-width: 426px) {
+    margin: 8px;
+    height: 60px;
+  }
+}

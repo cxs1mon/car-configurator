@@ -1,0 +1,22 @@
+small{
+  color: red;
+  font-size: 0.8rem;
+}
+fieldset{
+  border: none;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: 0;
+  margin: 10px 0;
+}
+form{
+  margin: 5px;
+}
+button{
+  margin-top: 10px;
+  margin-left: 2px;
+}
+main{
+  padding: 20px 10%;
+}

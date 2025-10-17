@@ -1,0 +1,29 @@
+<section class="customer-data">
+  <app-step-title
+    [title]='stepTitle'
+    [number]='stepNumber'
+  />
+  <form [formGroup]="form" class="customer-data__form">
+    <label class="customer-data__label">Vorname:
+      <input id="name" type="text" formControlName="firstname">
+    </label>
+
+    <label class="customer-data__label">Nachname:
+      <input id="name" type="text" formControlName="lastname">
+    </label>
+
+    <label class="customer-data__label">E-Mail:
+      <input type="email" formControlName="email">
+    </label>
+
+    <label class="customer-data__label">Telefon:
+      <input type="number" formControlName="phone">
+    </label>
+
+    <label class="customer-data__label customer-data__label--checkbox">
+      <input type="checkbox" formControlName="newsletter">
+      Ich möchte den Newsletter abonieren.
+    </label>
+    <button (click)="onClick()" class="customer-data__submit">Senden</button>
+  </form>
+</section>
