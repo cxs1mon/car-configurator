@@ -1,0 +1,158 @@
+.base-config__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.base-config__label input {
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 4px 0;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+.base-config__label input:focus {
+  border-bottom-color: #181d4e;
+}
+
+.base-config__label {
+  font-size: 16px;
+}
+
+.base-config__label--checkbox input {
+  width: fit-content;
+}
+
+.base-config__label--checkbox {
+  font-size: 14px;
+}
+
+.base-config__submit {
+  width: fit-content;
+}
+
+.base-config__color-title{
+  padding-bottom: 10px;
+}
+
+/* radio button styling from w3schools */
+
+/* Customize the label (the container) */
+.base-config__color-label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 13px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding-top: 3px
+}
+
+/* Hide the browser's default radio button */
+.base-config__color-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.base-config__custom-checkmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+/* specific Radio Button Color */
+.base-config__custom-checkmark#color-gold {
+  background-color: rgba(237, 178, 65, 0.3);
+}
+
+.base-config__custom-checkmark#color-silver {
+  background-color: rgba(163, 163, 163, 0.3);
+}
+
+.base-config__custom-checkmark#color-blue {
+  background-color: rgba(19, 46, 117, 0.3);
+}
+
+.base-config__custom-checkmark#color-red {
+  background-color: rgba(230, 0, 0, 0.3);
+}
+
+/* On mouse-over, add a grey border */
+.base-config__color-label:hover input ~ .base-config__custom-checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a black border */
+.base-config__color-label input:checked ~ .base-config__custom-checkmark#color-gold, .base-config__color-label:hover input ~ .base-config__custom-checkmark#color-gold {
+  background-color: #edb241;
+}
+.base-config__color-label input:checked ~ .base-config__custom-checkmark#color-silver, .base-config__color-label:hover input ~ .base-config__custom-checkmark#color-silver {
+  background-color: #919191;
+}
+.base-config__color-label input:checked ~ .base-config__custom-checkmark#color-blue, .base-config__color-label:hover input ~ .base-config__custom-checkmark#color-blue {
+  background-color: #132e75;
+}
+.base-config__color-label input:checked ~ .base-config__custom-checkmark#color-red, .base-config__color-label:hover input ~ .base-config__custom-checkmark#color-red {
+  background-color: #e60000;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.base-config__custom-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.base-config__color-label input:checked ~ .base-config__custom-checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.base-config__color-label .base-config__custom-checkmark:after {
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+}
+
+
+
+.base-config__navigation{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 60px;
+}
+
+.base-config__submit, .base-config__back{
+  border: 1px solid #cccccc;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #cccccc;
+  font-weight: bold;
+}
+
+.base-config__price {
+  border: 1px solid #181d4e;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #181d4e;
+  color: white;
+  font-weight: bold;
+}

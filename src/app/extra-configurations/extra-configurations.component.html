@@ -1,7 +1,21 @@
 <section class="extra-config">
 
-<app-step-title
-  [title]='stepTitle'
-  [number]='stepNumber'
-/>
+  <app-step-title
+    [title]='stepTitle'
+    [number]='stepNumber'
+  />
+
+  <section class="card">
+  <ng-container *ngFor="let element of extraList">
+  <app-card
+    [extra]='element'
+    [isSelected]='isSelected(element)'
+    (click)="toggleItem(element)"
+  />
+  </ng-container>
+  </section>
+  <p>Total: {{this.totalPrice}}.-</p>
+  <div class="extra-config__navigation">
+  <button (click)="onBack()" class="extra-config__back">< Zurück</button>
+  <button (click)="onNext()" class="extra-config__submit">Weiter ></button></div>
 </section>

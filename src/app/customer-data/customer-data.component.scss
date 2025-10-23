@@ -34,3 +34,18 @@
 .customer-data__submit{
   width: fit-content;
 }
+
+.customer-data__navigation{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 60px;
+}
+
+.customer-data__submit{
+  border: 1px solid #cccccc;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #cccccc;
+  font-weight: bold;
+}

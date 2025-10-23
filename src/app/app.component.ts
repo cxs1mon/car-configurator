@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgIf, NgSwitch, NgSwitchCase} from '@angular/common';
@@ -16,6 +16,24 @@ import {SummaryComponent} from './summary/summary.component';
 })
 export class AppComponent {
   step: number = 1;
+  receivedCustomerData: any = [];
+  receivedBaseConfiguration: any = [];
+  receivedExtraConfiguration: any = [];
+
+  onCustomerDataChanged(data: any) {
+    console.log('Empfangene Kundendaten:', data);
+    this.receivedCustomerData = data;
+  }
+
+  onBaseConfigurationChanged(data: any) {
+    console.log('Empfangene Basis Konfigurationen:', data);
+    this.receivedBaseConfiguration = data;
+  }
+
+  onExtraConfigurationChanged(data: any) {
+    console.log('Empfangene Extra Konfigurationen:', data);
+    this.receivedExtraConfiguration = data;
+  }
 
   next() {
     this.step++
@@ -26,6 +44,6 @@ export class AppComponent {
   }
 
   finish() {
-    console.log('Configurations submitted');
+    console.log('Process Finished');
   }
 }

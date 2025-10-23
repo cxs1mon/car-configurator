@@ -3,5 +3,47 @@
     [title]='stepTitle'
     [number]='stepNumber'
   />
+  <form [formGroup]="form" class="base-config__form">
+    <label class="base-config__label">Marke:
+      <input type="text" formControlName="brand" (change)="setPriceCalculated(false)">
+    </label>
 
+    <label class="base-config__label">Modell:
+      <input type="text" formControlName="model" (change)="setPriceCalculated(false)">
+    </label>
+
+    <p class="base-config__color" (change)="setPriceCalculated(false)">
+      <label class="base-config__color-title">Farbe:</label><br>
+      <label class="base-config__color-label">Gold
+        <input type="radio" formControlName="color" value="Gold" [checked]="true">
+        <span class="base-config__custom-checkmark" id="color-gold"></span>
+      </label>
+      <label class="base-config__color-label">Silber
+        <input type="radio" formControlName="color" value="Silber">
+        <span class="base-config__custom-checkmark" id="color-silver"></span>
+      </label>
+      <label class="base-config__color-label">Blau
+        <input type="radio" formControlName="color" value="Blau">
+        <span class="base-config__custom-checkmark" id="color-blue"></span>
+      </label>
+      <label class="base-config__color-label">Rot
+        <input type="radio" formControlName="color" value="Rot">
+        <span class="base-config__custom-checkmark" id="color-red"></span>
+      </label>
+    </p>
+
+    <label class="base-config__label">Preis:
+      <p id="price" *ngIf="priceCalculated; else noPrice">{{ this.price }}Fr.</p>
+    </label>
+    <ng-template #noPrice>
+      <p>
+        <button (click)="onCalculatePrice()" class="base-config__price" *ngIf="!priceCalculated">Preis berechnen
+        </button>
+      </p>
+    </ng-template>
+    <div class="base-config__navigation">
+    <button (click)="onBack()" class="base-config__back">< Zurück</button>
+    <button (click)="onNext()" [disabled]="!priceCalculated" class="base-config__submit">Weiter ></button>
+    </div>
+  </form>
 </section>

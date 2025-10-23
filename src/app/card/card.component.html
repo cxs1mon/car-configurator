@@ -1,0 +1,11 @@
+<div class="card__container" (click)="onSelect()" [class.isSelected]="isSelected"
+>
+  <h2 class="card__title">{{ extra.extraName }}</h2>
+  <p>{{ extra.extraDescription }}</p>
+  <div class="card__img-container">
+    <img class="card__img" ngSrc="./rim.png" alt="symbol image of extra" width="180" height="180">
+  </div>
+  <div class="card__price-container">
+    <p class="card__price">{{ extra.extraPrice }}.-</p>
+  </div>
+</div>

@@ -2,26 +2,22 @@
 <main class="main">
   <div [ngSwitch]="step">
     <section *ngSwitchCase="1">
-      <app-customer-data/>
-      <button (click)="next()">Weiter</button>
+      <app-customer-data (customerDataChange)="onCustomerDataChanged($event)" (continue)="next()"/>
     </section>
 
     <section *ngSwitchCase="2">
-      <app-base-configurations/>
-      <button (click)="back()">Zurück</button>
-      <button (click)="next()">Weiter</button>
+      <app-base-configurations (baseConfiguration)="onBaseConfigurationChanged($event)" (continue)="next()"
+                               (back)="back()"/>
     </section>
 
     <section *ngSwitchCase="3">
-      <app-extra-configurations/>
-      <button (click)="back()">Zurück</button>
-      <button (click)="next()">Weiter</button>
+      <app-extra-configurations (extraConfiguration)="onExtraConfigurationChanged($event)" (continue)="next()"
+                                (back)="back()"/>
     </section>
 
     <section *ngSwitchCase="4">
-      <app-summary/>
-      <button (click)="back()">Zurück</button>
-      <button (click)="finish()">Abschliessen</button>
+      <app-summary (back)="back()" (finish)="finish()" [getCustomerData]="receivedCustomerData"
+                   [getBaseConfig]="receivedBaseConfiguration" [getExtraConfig]="receivedExtraConfiguration"/>
     </section>
   </div>
 </main>

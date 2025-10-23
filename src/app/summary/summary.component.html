@@ -3,4 +3,51 @@
     [title]='stepTitle'
     [number]='stepNumber'
   />
+  <div class="summary__content">
+    <div class="summary__customer-data">
+      <h2 class="summary__title">Kundendaten</h2>
+      <p>Vorname: {{ customerData?.firstname }}</p>
+      <p>Nachname: {{ customerData?.lastname }}</p>
+      <p>Email: {{ customerData?.email }}</p>
+      <p>Telefon: {{ customerData?.phone }}</p>
+      <p *ngIf="customerData.newsletter; else noNewsletter">Ich möchte den Newsletter erhalten: Ja</p>
+      <ng-template #noNewsletter>Ich möchte den Newsletter erhalten: Nein</ng-template>
+    </div>
+
+    <div class="summary__base-config">
+      <h2 class="summary__title">Basis Konfigurationen</h2>
+      <p>Marke: {{ baseConfig?.brand }}</p>
+      <p>Modell: {{ baseConfig?.model }}</p>
+      <p>Farbe: {{ baseConfig?.color }}</p>
+      <p>Preis: {{ baseConfig?.price }}.-</p>
+    </div>
+
+    <div class="summary__extra-config">
+      <h2 class="summary__title">Zusätzliche Konfigurationen</h2>
+      <div *ngIf="extraConfig.length > 0; else noExtraConfigs">
+        <div *ngFor="let extra of extraConfig">
+          <h3 class="summary__extra-title">{{ extra.extraName }}</h3>
+          <p>{{ extra.extraDescription }}</p>
+          <p>Preis: {{ extra.extraPrice }}.-</p>
+        </div>
+      </div>
+    </div>
+    <ng-template #noExtraConfigs>
+      <p class="summary_no-extra">Keine zusätzlichen Konfigurationen ausgewählt</p>
+    </ng-template>
+  </div>
+
+  <hr>
+  <p>Preis Total: {{ totalExtraPrice }} CHF</p>
+
+  <form [formGroup]="agb" class="summary__form">
+    <label class="summary__label-checkbox">
+    <input type="checkbox" formControlName="agbCheck" class="summary__checkbox">
+    Ich akzeptiere die AGB</label>
+  </form>
+
+  <div class="summary__navigation">
+    <button (click)="onBack()" class="summary__back">< Zurück</button>
+    <button (click)="onFinish()" class="summary__submit" [disabled]="agb.invalid">Abschliessen ></button>
+  </div>
 </section>

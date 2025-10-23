@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {StepTitleComponent} from '../step-title/step-title.component';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
@@ -12,17 +12,31 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
   styleUrl: './customer-data.component.scss'
 })
 export class CustomerDataComponent {
+  @Output() customerDataChange = new EventEmitter<any>();
+  @Output() continue = new EventEmitter<{}>();
+
   stepTitle = 'Kundendaten';
   stepNumber = '1';
   form = new FormGroup({
-    firstname: new FormControl('a', Validators.required),
-    lastname: new FormControl('b', Validators.required),
-    email: new FormControl('a', [Validators.required, Validators.email]),
-    phone: new FormControl('0', Validators.required),
+    firstname: new FormControl('', Validators.required),
+    lastname: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(9)]),
     newsletter: new FormControl(true)
   });
 
   onClick() {
-    console.log('Form Submitted');
+    this.customerDataChange.emit(this.form.value)
+    this.continue.emit()
+
+    this.form.reset({
+      firstname: '',
+      lastname: '',
+      email: '',
+      phone: '',
+      newsletter: true
+    });
   }
+
+
 }

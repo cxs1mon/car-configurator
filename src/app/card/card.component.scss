@@ -1,0 +1,34 @@
+.card__container {
+  margin: 20px 0;
+  padding: 0 10px;
+  border-radius: 20px;
+  border: 4px solid transparent;
+  background-color: #161d5e;
+  color: white;
+  @media (min-width: 426px) {
+    width: 400px;
+  }
+  @media (min-width: 769px) {
+    width: 300px;
+  }
+}
+
+.card__container.isSelected {
+    border: 4px solid #567fd6;
+  box-shadow: 5px 5px 10px #939393;
+}
+
+.card__img-container{
+  display: none;
+  @media (min-width: 426px) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.card__price-container{
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+  padding: 0 20px;
+}

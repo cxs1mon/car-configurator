@@ -1,0 +1,25 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 426px) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0 20px;
+    flex-wrap: wrap;
+  }
+}
+
+.extra-config__navigation{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 60px;
+}
+
+.extra-config__back, .extra-config__submit{
+  border: 1px solid #cccccc;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #cccccc;
+  font-weight: bold;
+}
