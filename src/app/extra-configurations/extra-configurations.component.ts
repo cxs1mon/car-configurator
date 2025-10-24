@@ -43,6 +43,7 @@ export class ExtraConfigurationsComponent {
   @Output() back = new EventEmitter<{}>();
 
   selectedItems: any[] = [];
+  extrasTouched: boolean = false;
 
   onNext() {
 
@@ -55,14 +56,13 @@ export class ExtraConfigurationsComponent {
   }
 
   toggleItem(item: any) {
-    console.log(item);
+    this.extrasTouched = true;
     const index = this.selectedItems.indexOf(item);
     if (index >= 0) {
       this.selectedItems.splice(index, 1); // deselect
     } else {
       this.selectedItems.push(item); // select
     }
-    console.log(this.selectedItems);
     this.getTotalPrice()
   }
 
