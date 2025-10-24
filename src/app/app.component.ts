@@ -7,31 +7,30 @@ import {CustomerDataComponent} from './customer-data/customer-data.component';
 import {BaseConfigurationsComponent} from './base-configurations/base-configurations.component';
 import {ExtraConfigurationsComponent} from './extra-configurations/extra-configurations.component';
 import {SummaryComponent} from './summary/summary.component';
+import {FinalStepComponent} from './final-step/final-step.component';
+import {StartComponent} from './start/start.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ReactiveFormsModule, HeaderComponent, NgSwitch, NgSwitchCase, CustomerDataComponent, BaseConfigurationsComponent, ExtraConfigurationsComponent, SummaryComponent],
+  imports: [RouterOutlet, ReactiveFormsModule, HeaderComponent, NgSwitch, NgSwitchCase, CustomerDataComponent, BaseConfigurationsComponent, ExtraConfigurationsComponent, SummaryComponent, FinalStepComponent, StartComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  step: number = 1;
+  step: number = 0;
   receivedCustomerData: any = [];
   receivedBaseConfiguration: any = [];
   receivedExtraConfiguration: any = [];
 
   onCustomerDataChanged(data: any) {
-    console.log('Empfangene Kundendaten:', data);
     this.receivedCustomerData = data;
   }
 
   onBaseConfigurationChanged(data: any) {
-    console.log('Empfangene Basis Konfigurationen:', data);
     this.receivedBaseConfiguration = data;
   }
 
   onExtraConfigurationChanged(data: any) {
-    console.log('Empfangene Extra Konfigurationen:', data);
     this.receivedExtraConfiguration = data;
   }
 
@@ -45,5 +44,6 @@ export class AppComponent {
 
   finish() {
     console.log('Process Finished');
+    this.step = 0;
   }
 }

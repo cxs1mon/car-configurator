@@ -1,15 +1,13 @@
 import {Component, EventEmitter, Input, model, Output, SimpleChanges} from '@angular/core';
 import {StepTitleComponent} from "../step-title/step-title.component";
-import {JsonPipe, NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-summary',
   imports: [
     StepTitleComponent,
-    JsonPipe,
     NgForOf,
-    NgOptimizedImage,
     NgIf,
     FormsModule,
     ReactiveFormsModule,
@@ -26,7 +24,7 @@ export class SummaryComponent {
   extraConfig: any;
 
   @Output() back = new EventEmitter<{}>();
-  @Output() finish = new EventEmitter<{}>();
+  @Output() continue = new EventEmitter<{}>();
   @Input() getCustomerData: any;
   @Input() getBaseConfig: any;
   @Input() getExtraConfig: any;
@@ -52,8 +50,8 @@ export class SummaryComponent {
   }
 
 
-  onFinish() {
-    this.finish.emit()
+  onNext() {
+    this.continue.emit()
   }
 
   onBack() {

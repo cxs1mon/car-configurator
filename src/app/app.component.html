@@ -1,6 +1,10 @@
 <app-header/>
 <main class="main">
   <div [ngSwitch]="step">
+    <section *ngSwitchCase="0">
+      <app-start (continue)="next()"/>
+    </section>
+
     <section *ngSwitchCase="1">
       <app-customer-data (customerDataChange)="onCustomerDataChanged($event)" (continue)="next()"/>
     </section>
@@ -16,8 +20,12 @@
     </section>
 
     <section *ngSwitchCase="4">
-      <app-summary (back)="back()" (finish)="finish()" [getCustomerData]="receivedCustomerData"
+      <app-summary (back)="back()" (continue)="next()" [getCustomerData]="receivedCustomerData"
                    [getBaseConfig]="receivedBaseConfiguration" [getExtraConfig]="receivedExtraConfiguration"/>
+    </section>
+
+    <section *ngSwitchCase="5">
+      <app-final-step (new)="finish()" />
     </section>
   </div>
 </main>
