@@ -1,12 +1,14 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {StepTitleComponent} from '../step-title/step-title.component';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-customer-data',
   imports: [
     StepTitleComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgIf
   ],
   templateUrl: './customer-data.component.html',
   styleUrl: './customer-data.component.scss'

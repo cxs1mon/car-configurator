@@ -63,9 +63,14 @@ export class ExtraConfigurationsComponent {
       this.selectedItems.push(item); // select
     }
     console.log(this.selectedItems);
+    this.getTotalPrice()
   }
 
   isSelected(item: any) {
     return this.selectedItems.includes(item);
+  }
+
+  getTotalPrice() {
+    this.totalPrice = this.selectedItems.reduce((sum: any, item: { extraPrice: any; }) => sum + item.extraPrice, 0);
   }
 }

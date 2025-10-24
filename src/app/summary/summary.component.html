@@ -43,11 +43,14 @@
   <form [formGroup]="agb" class="summary__form">
     <label class="summary__label-checkbox">
     <input type="checkbox" formControlName="agbCheck" class="summary__checkbox">
-    Ich akzeptiere die AGB</label>
+    Ich akzeptiere die AGB</label><br>
+    <small *ngIf="agb.get('agbCheck')?.touched && agb.get('agbCheck')?.hasError('required')" class="summary__form-error">
+      Bitte Akzeptiere die AGB um fortzufahren
+    </small>
   </form>
 
   <div class="summary__navigation">
     <button (click)="onBack()" class="summary__back">< Zurück</button>
-    <button (click)="onFinish()" class="summary__submit" [disabled]="agb.invalid">Abschliessen ></button>
+    <button (click)="onFinish()" class="summary__submit" [disabled]="agb.invalid || !this.agb.valid">Abschliessen ></button>
   </div>
 </section>

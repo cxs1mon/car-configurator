@@ -29,7 +29,7 @@ export class BaseConfigurationsComponent {
   form = new FormGroup({
     brand: new FormControl('', Validators.required),
     model: new FormControl('', Validators.required),
-    color: new FormControl('Gold', [Validators.required]),
+    color: new FormControl('Gold', Validators.required),
     price: new FormControl(0)
   });
 

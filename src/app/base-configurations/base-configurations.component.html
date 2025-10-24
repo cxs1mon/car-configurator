@@ -6,10 +6,16 @@
   <form [formGroup]="form" class="base-config__form">
     <label class="base-config__label">Marke:
       <input type="text" formControlName="brand" (change)="setPriceCalculated(false)">
+      <small *ngIf="form.get('brand')?.touched && form.get('brand')?.hasError('required')" class="base-config__form-error">
+        Automarke ist erforderlich
+      </small>
     </label>
 
     <label class="base-config__label">Modell:
       <input type="text" formControlName="model" (change)="setPriceCalculated(false)">
+      <small *ngIf="form.get('model')?.touched && form.get('model')?.hasError('required')" class="base-config__form-error">
+        Modell ist erforderlich
+      </small>
     </label>
 
     <p class="base-config__color" (change)="setPriceCalculated(false)">
@@ -43,7 +49,7 @@
     </ng-template>
     <div class="base-config__navigation">
     <button (click)="onBack()" class="base-config__back">< Zurück</button>
-    <button (click)="onNext()" [disabled]="!priceCalculated" class="base-config__submit">Weiter ></button>
+    <button (click)="onNext()" [disabled]="!priceCalculated || !this.form.valid" class="base-config__submit">Weiter ></button>
     </div>
   </form>
 </section>

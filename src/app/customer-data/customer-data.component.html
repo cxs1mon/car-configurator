@@ -7,17 +7,35 @@
     <label class="customer-data__label">Vorname:
       <input id="name" type="text" formControlName="firstname">
     </label>
+    <small *ngIf="form.get('firstname')?.touched && form.get('firstname')?.hasError('required')" class="customer-data__form-error">
+      Vorname ist erforderlich
+    </small>
 
     <label class="customer-data__label">Nachname:
       <input id="name" type="text" formControlName="lastname">
+      <small *ngIf="form.get('lastname')?.touched && form.get('lastname')?.hasError('required')" class="customer-data__form-error">
+        Nachname ist erforderlich
+      </small>
     </label>
 
     <label class="customer-data__label">E-Mail:
       <input type="email" formControlName="email">
+      <small *ngIf="form.get('email')?.touched && form.get('email')?.hasError('required')" class="customer-data__form-error">
+        Email ist erforderlich
+      </small>
+      <small *ngIf="form.get('email')?.touched && form.get('email')?.hasError('email')" class="customer-data__form-error">
+        Ungültige Email Adresse
+      </small>
     </label>
 
     <label class="customer-data__label">Telefon:
-      <input type="number" formControlName="phone">
+      <input type="text" formControlName="phone">
+      <small *ngIf="form.get('phone')?.touched && form.get('phone')?.hasError('required')" class="customer-data__form-error">
+        Telefonnummer ist erforderlich
+      </small>
+      <small *ngIf="form.get('phone')?.touched && form.get('phone')?.hasError('minlength')" class="customer-data__form-error">
+        Telefonnummer ist zu kurz
+      </small>
     </label>
 
     <label class="customer-data__label customer-data__label--checkbox">
@@ -25,7 +43,7 @@
       Ich möchte den Newsletter abonieren.
     </label>
     <div class="customer-data__navigation">
-      <button (click)="onClick()" class="customer-data__submit">Weiter ></button>
+      <button (click)="onClick()" class="customer-data__submit" [disabled]="!this.form.valid">Weiter ></button>
     </div>
   </form>
 </section>
