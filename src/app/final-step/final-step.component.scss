@@ -23,11 +23,11 @@
 .final-step__content div {
   margin: 40px 0 0 0;
   @media (min-width: 769px) {
-    min-width: 20%;
+    min-width: 40%;
   }
 }
 
-.final-step__content .final-step__title, .final-step__content .final-step__customer-data {
+.final-step__content .final-step__title, .final-step__content .final-step__customer-data, .final-step__content .final-step__base-config {
   margin-top: 15px;
 }
 
