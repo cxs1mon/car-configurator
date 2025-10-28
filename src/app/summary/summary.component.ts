@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, model, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {StepTitleComponent} from "../step-title/step-title.component";
 import {NgForOf, NgIf} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';

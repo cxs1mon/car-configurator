@@ -1,11 +1,10 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NgClass, NgOptimizedImage} from '@angular/common';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-card',
   imports: [
-    NgOptimizedImage,
-    NgClass
+    NgOptimizedImage
   ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'

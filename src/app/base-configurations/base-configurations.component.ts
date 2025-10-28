@@ -2,7 +2,6 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {StepTitleComponent} from "../step-title/step-title.component";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgIf} from '@angular/common';
-import {delayWhen} from 'rxjs';
 
 @Component({
   selector: 'app-base-configurations',
