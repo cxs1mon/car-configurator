@@ -137,7 +137,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 60px;
+  margin-top: 20px;
+  @media (min-width: 426px) {
+    margin-top: 60px;
+  }
 }
 
 .base-config__submit, .base-config__back{

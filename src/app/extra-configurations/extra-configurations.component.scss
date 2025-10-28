@@ -13,7 +13,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 60px;
+  margin-top: 20px;
+  @media (min-width: 426px) {
+    margin-top: 60px;
+  }
 }
 
 .extra-config__back, .extra-config__submit{

@@ -13,7 +13,7 @@
     min-width: 40%;
   }
 }
-.summary__title, .extraConfig div {
+.summary__title{
   margin: 0;
 }
 .summary__extra-title, .summary__form{
@@ -28,7 +28,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 60px;
+  margin-top: 20px;
+  @media (min-width: 426px) {
+    margin-top: 60px;
+  }
 }
 
 .summary__back, .summary__submit{
