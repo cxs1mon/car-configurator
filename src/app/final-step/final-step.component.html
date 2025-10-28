@@ -1,9 +1,47 @@
 <section class="final-step">
-  <h1>Deine Anfrage war erfolgreich!</h1>
-  <p>Vielen Dank für dein Interesse. Deine Konfiguration wurde gespeichert,
-    und unser Team wird sich bei dir melden.</p>
+  <h1>Wir haben deine Anfrage erhalten</h1>
+  <div class="final-step__info">
+    <p class="final-step__message">Vielen Dank für deine Anfrage, unser Team wird sich so schnell wie möglich bei dir melden.</p>
 
-  <button (click)="onClick()" class="final-step__new">
-    Neue Konfiguration beginnen
-  </button>
+    <button (click)="onClick()" class="final-step__new">
+      Neue Konfiguration beginnen >
+    </button>
+  </div>
+  <p>Folgende Konfiguration haben wir erhalten:</p>
+  <div class="final-step__content">
+    <div class="final-step__customer-data">
+      <h2 class="final-step__title">Kundendaten</h2>
+      <p>Vorname: {{ customerData?.firstname }}</p>
+      <p>Nachname: {{ customerData?.lastname }}</p>
+      <p>Email: {{ customerData?.email }}</p>
+      <p>Telefon: {{ customerData?.phone }}</p>
+      <p *ngIf="customerData.newsletter; else noNewsletter">Ich möchte den Newsletter erhalten: Ja</p>
+      <ng-template #noNewsletter>Ich möchte den Newsletter erhalten: Nein</ng-template>
+    </div>
+
+    <div class="final-step__base-config">
+      <h2 class="final-step__title">Basis Konfigurationen</h2>
+      <p>Marke: {{ baseConfig?.brand }}</p>
+      <p>Modell: {{ baseConfig?.model }}</p>
+      <p>Farbe: {{ baseConfig?.color }}</p>
+      <p>Preis: {{ baseConfig?.price }}.-</p>
+    </div>
+
+    <div class="final-step__extra-config">
+      <h2 class="final-step__title">Zusätzliche Konfigurationen</h2>
+      <div *ngIf="extraConfig.length > 0; else noExtraConfigs">
+        <div *ngFor="let extra of extraConfig">
+          <h3 class="final-step__extra-title">{{ extra.extraName }}</h3>
+          <p>{{ extra.extraDescription }}</p>
+          <p>Preis: {{ extra.extraPrice }}.-</p>
+        </div>
+      </div>
+    </div>
+    <ng-template #noExtraConfigs>
+      <p class="summary_no-extra">Keine zusätzlichen Konfigurationen ausgewählt</p>
+    </ng-template>
+  </div>
+  <hr>
+  <p class="final-step__total-price">Preis Total: {{ totalExtraPrice }} CHF</p>
+  <p class="final-step__notice">Sollte dies nicht richtig sein, melde dich bitte unter contact&#64;carconfigurator.com mit der configNr. {{Math.floor(Math.random() * 1000000)}}</p>
 </section>

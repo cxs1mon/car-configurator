@@ -4,5 +4,71 @@
   padding: 15px;
   background-color: #cccccc;
   font-weight: bold;
+  @media (min-width: 426px) {
+    width: 200px;
+    height: 57px;
+  }
 }
 
+.final-step__content {
+  @media (min-width: 769px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+}
+
+.final-step__content div {
+  margin: 40px 0 0 0;
+  @media (min-width: 769px) {
+    min-width: 20%;
+  }
+}
+
+.final-step__content .final-step__title, .final-step__content .final-step__customer-data {
+  margin-top: 15px;
+}
+
+.final-step__extra-title, .final-step__form {
+  margin: 1rem 0;
+}
+
+.final-step__extra-config {
+  width: 100% !important;
+}
+
+.summary_no-extra {
+  font-style: italic;
+}
+
+.final-step__info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  @media (min-width: 769px) {
+    gap: 20px;
+  }
+}
+
+.final-step__info div {
+  margin: 40px 0 0 0;
+  @media (min-width: 769px) {
+    min-width: 40%;
+  }
+}
+
+.final-step__notice {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+
+.final-step__message {
+  @media (min-width: 426px) {
+    width: 40%;
+  }
+}

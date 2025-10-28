@@ -25,7 +25,8 @@
     </section>
 
     <section *ngSwitchCase="5">
-      <app-final-step (new)="finish()" />
+      <app-final-step (new)="finish()" [getCustomerData]="receivedCustomerData"
+                      [getBaseConfig]="receivedBaseConfiguration" [getExtraConfig]="receivedExtraConfiguration"/>
     </section>
   </div>
 </main>
