@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
+import {ExtrasModel} from '../../model/extrasModel';
 
 @Component({
   selector: 'app-card',
@@ -10,10 +11,9 @@ import {NgOptimizedImage} from '@angular/common';
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
-  @Input() extra!: any;
+  @Input() extra!: ExtrasModel;
   @Input() isSelected!: boolean;
   @Output() selectCard = new EventEmitter<{}>();
-
 
   onSelect() {
     this.selectCard.emit(this.extra)

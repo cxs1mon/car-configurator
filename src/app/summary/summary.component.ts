@@ -4,6 +4,9 @@ import {NgForOf, NgIf} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {CarConfiguratorService} from '../service/car-configurator.service';
 import {combineLatest} from 'rxjs';
+import {ExtrasModel} from '../../model/extrasModel';
+import {customerDataModel} from '../../model/customerData.model';
+import {BaseConfigDataModel} from '../../model/baseConfigDataModel';
 
 @Component({
   selector: 'app-summary',
@@ -12,7 +15,7 @@ import {combineLatest} from 'rxjs';
     NgForOf,
     NgIf,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss'
@@ -21,9 +24,9 @@ export class SummaryComponent {
   stepTitle = 'Zusammenfassung & Abschluss';
   stepNumber = '4';
 
-  customerData: any;
-  baseConfig: any;
-  extraConfig: any;
+  customerData!: customerDataModel;
+  baseConfig!: BaseConfigDataModel;
+  extraConfig!: ExtrasModel[];
 
   @Output() back = new EventEmitter<{}>();
   @Output() continue = new EventEmitter<{}>();
@@ -51,10 +54,9 @@ export class SummaryComponent {
   });
 
   get totalExtraPrice(): number {
-    let totalExtras = this.extraConfig.reduce((sum: any, item: { extraPrice: any; }) => sum + item.extraPrice, 0);
+    let totalExtras = this.extraConfig.reduce((sum: number, item: { extraPrice: number; }) => sum + item.extraPrice, 0);
     return Math.floor(totalExtras + this.baseConfig.price);
   }
-
 
   onNext() {
     this.continue.emit()

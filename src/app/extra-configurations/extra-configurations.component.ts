@@ -4,6 +4,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgForOf, NgIf} from '@angular/common';
 import {CardComponent} from '../card/card.component';
 import {CarConfiguratorService} from '../service/car-configurator.service';
+import {extras} from '../../assets/data/extras';
+import {ExtrasModel} from '../../model/extrasModel';
 
 @Component({
   selector: 'app-extra-configurations',
@@ -19,31 +21,18 @@ import {CarConfiguratorService} from '../service/car-configurator.service';
   styleUrl: './extra-configurations.component.scss'
 })
 export class ExtraConfigurationsComponent {
-  stepTitle = 'Zusätzliche Konfigurationen';
-  stepNumber = '3';
+  stepTitle: string = 'Zusätzliche Konfigurationen';
+  stepNumber: string = '3';
   totalPrice: number = 0;
 
-  extraList: any = [{
-    extraName: 'Sportfelgen 19" Performance Line',
-    extraDescription: 'Hochwertige, leichte Alu-Felgen im sportlichen Design. Verbessern Fahrdynamik und verleihen dem Fahrzeug eine edle Optik.',
-    extraPath: './rim.png', extraPrice: 1200
-  },
-    {
-      extraName: 'Sportauspuff aus Edelstahl',
-      extraDescription: 'Leistungsoptimierter Auspuff mit dynamischem Klangbild. Sorgt für einen sportlichen Sound und reduziert Abgasgegendruck.',
-      extraPath: './rim.png', extraPrice: 900
-    }, {
-      extraName: 'Mattlackierung Premium',
-      extraDescription: 'Aufwendige Speziallackierung mit seidenmattem Finish. Verleiht dem Fahrzeug eine markante und exklusive Erscheinung.',
-      extraPath: './rim.png', extraPrice: 1500
-    }]
+  extraList: ExtrasModel[] = extras;
 
   @Output() continue = new EventEmitter<{}>();
   @Output() back = new EventEmitter<{}>();
 
   public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
-  selectedItems: any[] = [];
+  selectedItems: ExtrasModel[] = [];
   extrasTouched: boolean = false;
 
   onNext() {
@@ -55,7 +44,7 @@ export class ExtraConfigurationsComponent {
     this.back.emit()
   }
 
-  toggleItem(item: any) {
+  toggleItem(item: ExtrasModel) {
     this.extrasTouched = true;
     const index = this.selectedItems.indexOf(item);
     if (index >= 0) {
@@ -66,11 +55,11 @@ export class ExtraConfigurationsComponent {
     this.getTotalPrice()
   }
 
-  isSelected(item: any) {
+  isSelected(item: ExtrasModel) {
     return this.selectedItems.includes(item);
   }
 
   getTotalPrice() {
-    this.totalPrice = this.selectedItems.reduce((sum: any, item: { extraPrice: any; }) => sum + item.extraPrice, 0);
+    this.totalPrice = this.selectedItems.reduce((sum: number, item: { extraPrice: number; }) => sum + item.extraPrice, 0);
   }
 }

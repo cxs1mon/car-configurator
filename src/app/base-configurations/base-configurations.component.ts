@@ -21,12 +21,11 @@ export class BaseConfigurationsComponent {
 
   public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
-  stepTitle = 'Basis Konfigurationen';
-  stepNumber = '2';
+  stepTitle:string = 'Basis Konfigurationen';
+  stepNumber:string = '2';
 
   price: number = 0;
   priceCalculated: boolean = false;
-  customerData: any;
 
   form = new FormGroup({
     brand: new FormControl('', Validators.required),
