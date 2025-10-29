@@ -1,7 +1,9 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {StepTitleComponent} from "../step-title/step-title.component";
 import {NgForOf, NgIf} from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {CarConfiguratorService} from '../service/car-configurator.service';
+import {combineLatest} from 'rxjs';
 
 @Component({
   selector: 'app-summary',
@@ -25,19 +27,23 @@ export class SummaryComponent {
 
   @Output() back = new EventEmitter<{}>();
   @Output() continue = new EventEmitter<{}>();
-  @Input() getCustomerData: any;
-  @Input() getBaseConfig: any;
-  @Input() getExtraConfig: any;
 
+  public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
   ngOnInit() {
-    this.customerData = this.getCustomerData;
-    this.baseConfig = this.getBaseConfig;
-    this.extraConfig = this.getExtraConfig;
+    combineLatest([
+      this.carConfigurator.customerData$,
+      this.carConfigurator.baseConfiguration$,
+      this.carConfigurator.extraConfiguration$
+    ]).subscribe(([customerData, baseConfig, extraConfig]) => {
+      this.customerData = customerData;
+      this.baseConfig = baseConfig;
+      this.extraConfig = extraConfig;
 
-    console.log('Summary Customer Data:', this.customerData);
-    console.log('Summary Base Config:', this.baseConfig);
-    console.log('Summary Extra Config:', this.extraConfig);
+      if (!customerData) console.log('NO Sum CustomerData');
+      if (!baseConfig) console.log('NO Sum baseConfig');
+      if (!extraConfig) console.log('NO Sum extraConfig');
+    });
   }
 
   agb = new FormGroup({

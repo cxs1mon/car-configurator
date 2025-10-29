@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {NgForOf, NgIf} from '@angular/common';
+import {CarConfiguratorService} from '../service/car-configurator.service';
+import {combineLatest} from 'rxjs';
 
 @Component({
   selector: 'app-final-step',
@@ -14,20 +16,29 @@ export class FinalStepComponent {
   customerData: any;
   baseConfig: any;
   extraConfig: any;
+  configNr: number = 0;
 
   @Output() new = new EventEmitter<{}>();
-  @Input() getCustomerData: any;
-  @Input() getBaseConfig: any;
-  @Input() getExtraConfig: any;
+
+  public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
+
 
   ngOnInit() {
-    this.customerData = this.getCustomerData;
-    this.baseConfig = this.getBaseConfig;
-    this.extraConfig = this.getExtraConfig;
+    combineLatest([
+      this.carConfigurator.customerData$,
+      this.carConfigurator.baseConfiguration$,
+      this.carConfigurator.extraConfiguration$
+    ]).subscribe(([customerData, baseConfig, extraConfig]) => {
+      this.customerData = customerData;
+      this.baseConfig = baseConfig;
+      this.extraConfig = extraConfig;
 
-    console.log('Summary Customer Data:', this.customerData);
-    console.log('Summary Base Config:', this.baseConfig);
-    console.log('Summary Extra Config:', this.extraConfig);
+      if (!customerData) console.log('NO Sum CustomerData');
+      if (!baseConfig) console.log('NO Sum baseConfig');
+      if (!extraConfig) console.log('NO Sum extraConfig');
+    });
+
+    this.configNr = Math.floor(Math.random() * 1000);
   }
 
   get totalExtraPrice(): number {
@@ -39,5 +50,4 @@ export class FinalStepComponent {
     this.new.emit()
   }
 
-  protected readonly Math = Math;
 }

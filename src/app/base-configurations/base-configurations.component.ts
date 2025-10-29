@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {StepTitleComponent} from "../step-title/step-title.component";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgIf} from '@angular/common';
+import {CarConfiguratorService} from '../service/car-configurator.service';
 
 @Component({
   selector: 'app-base-configurations',
@@ -15,15 +16,17 @@ import {NgIf} from '@angular/common';
   styleUrl: './base-configurations.component.scss'
 })
 export class BaseConfigurationsComponent {
-  @Output() baseConfiguration = new EventEmitter<any>();
   @Output() continue = new EventEmitter<{}>();
   @Output() back = new EventEmitter<{}>();
+
+  public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
   stepTitle = 'Basis Konfigurationen';
   stepNumber = '2';
 
   price: number = 0;
   priceCalculated: boolean = false;
+  customerData: any;
 
   form = new FormGroup({
     brand: new FormControl('', Validators.required),
@@ -33,7 +36,7 @@ export class BaseConfigurationsComponent {
   });
 
   onNext() {
-    this.baseConfiguration.emit(this.form.value)
+    this.carConfigurator.setBaseConfig(this.form.value);
     this.continue.emit()
   }
 
@@ -52,4 +55,5 @@ export class BaseConfigurationsComponent {
   onBack() {
     this.back.emit()
   }
+
 }

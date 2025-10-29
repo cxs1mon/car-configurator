@@ -6,27 +6,23 @@
     </section>
 
     <section *ngSwitchCase="1">
-      <app-customer-data (customerDataChange)="onCustomerDataChanged($event)" (continue)="next()"/>
+      <app-customer-data (continue)="next()"/>
     </section>
 
     <section *ngSwitchCase="2">
-      <app-base-configurations (baseConfiguration)="onBaseConfigurationChanged($event)" (continue)="next()"
-                               (back)="back()"/>
+      <app-base-configurations (continue)="next()" (back)="back()"/>
     </section>
 
     <section *ngSwitchCase="3">
-      <app-extra-configurations (extraConfiguration)="onExtraConfigurationChanged($event)" (continue)="next()"
-                                (back)="back()"/>
+      <app-extra-configurations (continue)="next()" (back)="back()"/>
     </section>
 
     <section *ngSwitchCase="4">
-      <app-summary (back)="back()" (continue)="next()" [getCustomerData]="receivedCustomerData"
-                   [getBaseConfig]="receivedBaseConfiguration" [getExtraConfig]="receivedExtraConfiguration"/>
+      <app-summary (back)="back()" (continue)="next()"/>
     </section>
 
     <section *ngSwitchCase="5">
-      <app-final-step (new)="finish()" [getCustomerData]="receivedCustomerData"
-                      [getBaseConfig]="receivedBaseConfiguration" [getExtraConfig]="receivedExtraConfiguration"/>
+      <app-final-step (new)="finish()"/>
     </section>
   </div>
 </main>

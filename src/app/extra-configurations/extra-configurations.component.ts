@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {StepTitleComponent} from "../step-title/step-title.component";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgForOf, NgIf} from '@angular/common';
 import {CardComponent} from '../card/card.component';
+import {CarConfiguratorService} from '../service/car-configurator.service';
 
 @Component({
   selector: 'app-extra-configurations',
@@ -37,17 +38,16 @@ export class ExtraConfigurationsComponent {
       extraPath: './rim.png', extraPrice: 1500
     }]
 
-
-  @Output() extraConfiguration = new EventEmitter<any>();
   @Output() continue = new EventEmitter<{}>();
   @Output() back = new EventEmitter<{}>();
+
+  public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
   selectedItems: any[] = [];
   extrasTouched: boolean = false;
 
   onNext() {
-
-    this.extraConfiguration.emit(this.selectedItems)
+    this.carConfigurator.setExtraConfig(this.selectedItems);
     this.continue.emit()
   }
 

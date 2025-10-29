@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {StepTitleComponent} from '../step-title/step-title.component';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgIf} from '@angular/common';
+import {CarConfiguratorService} from '../service/car-configurator.service';
 
 @Component({
   selector: 'app-customer-data',
@@ -14,8 +15,9 @@ import {NgIf} from '@angular/common';
   styleUrl: './customer-data.component.scss'
 })
 export class CustomerDataComponent {
-  @Output() customerDataChange = new EventEmitter<any>();
   @Output() continue = new EventEmitter<{}>();
+
+  public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
   stepTitle = 'Kundendaten';
   stepNumber = '1';
@@ -28,9 +30,8 @@ export class CustomerDataComponent {
   });
 
   onClick() {
-    this.customerDataChange.emit(this.form.value)
-    this.continue.emit()
-
+    this.carConfigurator.setCustomerData(this.form.value);
+    this.continue.emit();
     this.form.reset({
       firstname: '',
       lastname: '',

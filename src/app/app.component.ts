@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgSwitch, NgSwitchCase} from '@angular/common';
@@ -9,6 +9,7 @@ import {ExtraConfigurationsComponent} from './extra-configurations/extra-configu
 import {SummaryComponent} from './summary/summary.component';
 import {FinalStepComponent} from './final-step/final-step.component';
 import {StartComponent} from './start/start.component';
+import {CarConfiguratorService} from './service/car-configurator.service';
 
 @Component({
   selector: 'app-root',
@@ -18,21 +19,8 @@ import {StartComponent} from './start/start.component';
 })
 export class AppComponent {
   step: number = 0;
-  receivedCustomerData: any = [];
-  receivedBaseConfiguration: any = [];
-  receivedExtraConfiguration: any = [];
 
-  onCustomerDataChanged(data: any) {
-    this.receivedCustomerData = data;
-  }
-
-  onBaseConfigurationChanged(data: any) {
-    this.receivedBaseConfiguration = data;
-  }
-
-  onExtraConfigurationChanged(data: any) {
-    this.receivedExtraConfiguration = data;
-  }
+  public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
   next() {
     this.step++
@@ -44,6 +32,9 @@ export class AppComponent {
 
   finish() {
     console.log('Process Finished');
+    this.carConfigurator.setCustomerData(null);
+    this.carConfigurator.setBaseConfig(null);
+    this.carConfigurator.setExtraConfig(null);
     this.step = 0;
   }
 }
