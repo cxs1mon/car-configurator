@@ -27,26 +27,26 @@ export class ExtraConfigurationsComponent {
 
   extraList: ExtrasModel[] = extras;
 
-  @Output() continue = new EventEmitter<{}>();
-  @Output() back = new EventEmitter<{}>();
+  @Output() continue: EventEmitter<{}> = new EventEmitter<{}>();
+  @Output() back: EventEmitter<{}> = new EventEmitter<{}>();
 
   public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
   selectedItems: ExtrasModel[] = [];
   extrasTouched: boolean = false;
 
-  onNext() {
+  onNext(): void {
     this.carConfigurator.setExtraConfig(this.selectedItems);
     this.continue.emit()
   }
 
-  onBack() {
+  onBack(): void {
     this.back.emit()
   }
 
-  toggleItem(item: ExtrasModel) {
+  toggleItem(item: ExtrasModel): void {
     this.extrasTouched = true;
-    const index = this.selectedItems.indexOf(item);
+    const index: number = this.selectedItems.indexOf(item);
     if (index >= 0) {
       this.selectedItems.splice(index, 1); // deselect
     } else {
@@ -55,11 +55,13 @@ export class ExtraConfigurationsComponent {
     this.getTotalPrice()
   }
 
-  isSelected(item: ExtrasModel) {
+  isSelected(item: ExtrasModel): boolean {
     return this.selectedItems.includes(item);
   }
 
-  getTotalPrice() {
-    this.totalPrice = this.selectedItems.reduce((sum: number, item: { extraPrice: number; }) => sum + item.extraPrice, 0);
+  getTotalPrice(): void {
+    this.totalPrice = this.selectedItems.reduce((sum: number, item: {
+      extraPrice: number;
+    }): number => sum + item.extraPrice, 0);
   }
 }

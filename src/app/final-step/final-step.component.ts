@@ -2,7 +2,7 @@ import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {NgForOf, NgIf} from '@angular/common';
 import {CarConfiguratorService} from '../service/car-configurator.service';
 import {combineLatest} from 'rxjs';
-import {customerDataModel} from '../../model/customerData.model';
+import {CustomerDataModel} from '../../model/customerData.model';
 import {BaseConfigDataModel} from '../../model/baseConfigDataModel';
 import {ExtrasModel} from '../../model/extrasModel';
 
@@ -16,21 +16,21 @@ import {ExtrasModel} from '../../model/extrasModel';
   styleUrl: './final-step.component.scss'
 })
 export class FinalStepComponent {
-  customerData!: customerDataModel;
+  customerData!: CustomerDataModel;
   baseConfig!: BaseConfigDataModel;
   extraConfig!: ExtrasModel[];
   configNr: number = 0;
 
-  @Output() new = new EventEmitter<{}>();
+  @Output() new: EventEmitter<{}> = new EventEmitter<{}>();
 
   public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
-  ngOnInit() {
+  ngOnInit(): void {
     combineLatest([
       this.carConfigurator.customerData$,
       this.carConfigurator.baseConfiguration$,
       this.carConfigurator.extraConfiguration$
-    ]).subscribe(([customerData, baseConfig, extraConfig]) => {
+    ]).subscribe(([customerData, baseConfig, extraConfig]): void => {
       this.customerData = customerData;
       this.baseConfig = baseConfig;
       this.extraConfig = extraConfig;
@@ -44,11 +44,13 @@ export class FinalStepComponent {
   }
 
   get totalExtraPrice(): number {
-    let totalExtras = this.extraConfig.reduce((sum: number, item: { extraPrice: number; }) => sum + item.extraPrice, 0);
+    let totalExtras: number = this.extraConfig.reduce((sum: number, item: {
+      extraPrice: number;
+    }): number => sum + item.extraPrice, 0);
     return Math.floor(totalExtras + this.baseConfig.price);
   }
 
-  onClick() {
+  onClick(): void {
     this.new.emit()
   }
 

@@ -9,16 +9,16 @@ import {CarConfiguratorService} from '../service/car-configurator.service';
   styleUrl: './start.component.scss'
 })
 export class StartComponent {
-  @Output() continue = new EventEmitter<{}>();
+  @Output() continue: EventEmitter<{}> = new EventEmitter<{}>();
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadLaunches();
   }
 
-  private loadLaunches() {
+  private loadLaunches(): void {
   }
 
-  onClick() {
+  onClick(): void {
     this.continue.emit()
   }
 }

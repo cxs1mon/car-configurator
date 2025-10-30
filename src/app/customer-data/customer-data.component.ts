@@ -3,7 +3,7 @@ import {StepTitleComponent} from '../step-title/step-title.component';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgIf} from '@angular/common';
 import {CarConfiguratorService} from '../service/car-configurator.service';
-import {initialCustomerDataModel} from '../../model/customerData.model';
+import {CustomerDataModel, initialCustomerDataModel} from '../../model/customerData.model';
 
 @Component({
   selector: 'app-customer-data',
@@ -20,8 +20,8 @@ export class CustomerDataComponent {
 
   public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
-  stepTitle = 'Kundendaten';
-  stepNumber = '1';
+  stepTitle: string = 'Kundendaten';
+  stepNumber: string = '1';
   form = new FormGroup({
     firstname: new FormControl(initialCustomerDataModel.firstname, Validators.required),
     lastname: new FormControl(initialCustomerDataModel.lastname, Validators.required),
@@ -31,7 +31,7 @@ export class CustomerDataComponent {
   });
 
   onClick() {
-    this.carConfigurator.setCustomerData(this.form.value);
+    this.carConfigurator.setCustomerData(this.form.value as CustomerDataModel);
     this.continue.emit();
     this.form.reset({
       firstname: '',

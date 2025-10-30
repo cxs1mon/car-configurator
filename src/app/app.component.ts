@@ -10,6 +10,9 @@ import {SummaryComponent} from './summary/summary.component';
 import {FinalStepComponent} from './final-step/final-step.component';
 import {StartComponent} from './start/start.component';
 import {CarConfiguratorService} from './service/car-configurator.service';
+import {initialCustomerDataModel} from '../model/customerData.model';
+import {initialBaseConfigDataModel} from '../model/baseConfigDataModel';
+import {initialExtrasModel} from '../model/extrasModel';
 
 @Component({
   selector: 'app-root',
@@ -22,19 +25,19 @@ export class AppComponent {
 
   public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
-  next() {
+  next(): void {
     this.step++
   }
 
-  back() {
+  back(): void {
     this.step--;
   }
 
-  finish() {
+  finish(): void {
     console.log('Process Finished');
-    this.carConfigurator.setCustomerData(null);
-    this.carConfigurator.setBaseConfig(null);
-    this.carConfigurator.setExtraConfig(null);
+    this.carConfigurator.setCustomerData(initialCustomerDataModel);
+    this.carConfigurator.setBaseConfig(initialBaseConfigDataModel);
+    this.carConfigurator.setExtraConfig(initialExtrasModel);
     this.step = 0;
   }
 }

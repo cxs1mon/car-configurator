@@ -13,9 +13,9 @@ import {ExtrasModel} from '../../model/extrasModel';
 export class CardComponent {
   @Input() extra!: ExtrasModel;
   @Input() isSelected!: boolean;
-  @Output() selectCard = new EventEmitter<{}>();
+  @Output() selectCard: EventEmitter<{}> = new EventEmitter<{}>();
 
-  onSelect() {
+  onSelect(): void {
     this.selectCard.emit(this.extra)
   }
 }

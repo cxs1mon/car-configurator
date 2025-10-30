@@ -5,8 +5,8 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {CarConfiguratorService} from '../service/car-configurator.service';
 import {combineLatest} from 'rxjs';
 import {ExtrasModel} from '../../model/extrasModel';
-import {customerDataModel} from '../../model/customerData.model';
 import {BaseConfigDataModel} from '../../model/baseConfigDataModel';
+import {CustomerDataModel} from '../../model/customerData.model';
 
 @Component({
   selector: 'app-summary',
@@ -21,24 +21,24 @@ import {BaseConfigDataModel} from '../../model/baseConfigDataModel';
   styleUrl: './summary.component.scss'
 })
 export class SummaryComponent {
-  stepTitle = 'Zusammenfassung & Abschluss';
-  stepNumber = '4';
+  stepTitle: string = 'Zusammenfassung & Abschluss';
+  stepNumber: string = '4';
 
-  customerData!: customerDataModel;
+  customerData!: CustomerDataModel;
   baseConfig!: BaseConfigDataModel;
   extraConfig!: ExtrasModel[];
 
-  @Output() back = new EventEmitter<{}>();
-  @Output() continue = new EventEmitter<{}>();
+  @Output() back: EventEmitter<{}> = new EventEmitter<{}>();
+  @Output() continue: EventEmitter<{}> = new EventEmitter<{}>();
 
   public carConfigurator: CarConfiguratorService = inject(CarConfiguratorService);
 
-  ngOnInit() {
+  ngOnInit(): void {
     combineLatest([
       this.carConfigurator.customerData$,
       this.carConfigurator.baseConfiguration$,
       this.carConfigurator.extraConfiguration$
-    ]).subscribe(([customerData, baseConfig, extraConfig]) => {
+    ]).subscribe(([customerData, baseConfig, extraConfig]): void => {
       this.customerData = customerData;
       this.baseConfig = baseConfig;
       this.extraConfig = extraConfig;
@@ -54,15 +54,17 @@ export class SummaryComponent {
   });
 
   get totalExtraPrice(): number {
-    let totalExtras = this.extraConfig.reduce((sum: number, item: { extraPrice: number; }) => sum + item.extraPrice, 0);
+    let totalExtras: number = this.extraConfig.reduce((sum: number, item: {
+      extraPrice: number;
+    }): number => sum + item.extraPrice, 0);
     return Math.floor(totalExtras + this.baseConfig.price);
   }
 
-  onNext() {
+  onNext(): void {
     this.continue.emit()
   }
 
-  onBack() {
+  onBack(): void {
     this.back.emit()
   }
 
